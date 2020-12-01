@@ -1,0 +1,23 @@
+{
+  "name": "expressvsmongodb",
+  "version": "1.0.0",
+  "description": "learning http",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tangbinhlam/expressvsmongodb.git"
+  },
+  "author": "Osalam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tangbinhlam/expressvsmongodb/issues"
+  },
+  "homepage": "https://github.com/tangbinhlam/expressvsmongodb#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
