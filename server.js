@@ -5,6 +5,11 @@ const server = http.createServer((req, res) => {
 
     console.log(headers, url, method);
 
+    res.hasHeader('Content-Type', 'text/html');
+    res.hasHeader('X-Powered-By', 'Node.js');
+    res.write('<h1>Welcome</h1>');
+    res.write('<h3>Frist Test</h3>');
+
     res.end();
 });
 
