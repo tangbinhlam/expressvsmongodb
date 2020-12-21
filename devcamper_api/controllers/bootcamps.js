@@ -14,11 +14,7 @@ exports.getBootcamps = async (req, res, next) => {
             }
         );
     } catch (error) {
-        res.status(400).json(
-            {
-                success: false,
-            }
-        );
+        next(error);
     }
 }
 
@@ -39,7 +35,7 @@ exports.getBootcamp = async (req, res, next) => {
             }
         );
     } catch (error) {
-        next(new ErrorResponse(`Bootcamp not found with id of ${req.params.id}`, 404));
+        next(error);
     }
 }
 
@@ -58,11 +54,7 @@ exports.createBootcamp = async (req, res, next) => {
             }
         );
     } catch (error) {
-        res.status(400).json(
-            {
-                success: false,
-            }
-        );
+        next(error);
     }
 }
 
