@@ -4,15 +4,45 @@ const Bootcamp = require('../models/Bootcamp')
 // @desc    Get all bootcamps
 // @route   GET /api/v1/bootcamps
 // @access  Public
-exports.getBootcamps = (req, res, next) => {
-    res.status(200).json({ success: true, msg: `Show all bootcamps` });
+exports.getBootcamps = async (req, res, next) => {
+    try {
+        const bootcamp = await Bootcamp.find();
+        res.status(200).json(
+            {
+                success: true,
+                data: bootcamp,
+                msg: `All Bootcamps`
+            }
+        );
+    } catch (error) {
+        res.status(400).json(
+            {
+                success: false,
+            }
+        );
+    }
 }
 
 // @desc    Get bootcamp with id
 // @route   GET /api/v1/bootcamps/:id
 // @access  Public
-exports.getBootcamp = (req, res, next) => {
-    res.status(200).json({ success: true, msg: `Show bootcamp with id = ${req.params.id}` });
+exports.getBootcamp = async (req, res, next) => {
+    try {
+        const bootcamp = await Bootcamp.findById(req.params.id);
+        res.status(200).json(
+            {
+                success: true,
+                data: bootcamp,
+                msg: `Show bootcamp with id = ${req.params.id}`
+            }
+        );
+    } catch (error) {
+        res.status(404).json(
+            {
+                success: false,
+            }
+        );
+    }
 }
 
 // @desc    Create bootcamp
