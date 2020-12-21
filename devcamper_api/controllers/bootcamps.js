@@ -37,11 +37,7 @@ exports.getBootcamp = async (req, res, next) => {
             }
         );
     } catch (error) {
-        res.status(404).json(
-            {
-                success: false,
-            }
-        );
+        next(error);
     }
 }
 
