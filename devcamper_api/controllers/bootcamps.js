@@ -7,15 +7,21 @@ const asyncHandler = require('../middleware/async');
 // @route   GET /api/v1/bootcamps
 // @access  Public
 exports.getBootcamps = asyncHandler(async (req, res, next) => {
-    const bootcamps = await Bootcamp.find();
-    res.status(200).json(
-        {
-            success: true,
-            data: bootcamps,
-            count: bootcamps.length,
-            msg: `All Bootcamps`
-        }
-    );
+    console.log(req.query);
+
+    let query;
+
+    let queryStr = JSON.stringify(req.query);
+    console.log(queryStr.green);
+
+    queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`);
+
+    query = Bootcamp.find(JSON.parse(queryStr));
+
+    console.log(queryStr.blue);
+
+    const bootcamps = await query;
+    res.status(200).json({ success: true, data: bootcamps, count: bootcamps.length, msg: `All Bootcamps` });
 });
 
 // @desc    Get bootcamp with id
@@ -37,13 +43,7 @@ exports.getBootcamp = asyncHandler(async (req, res, next) => {
 // @access  Private
 exports.createBootcamp = asyncHandler(async (req, res, next) => {
     const bootcamp = await Bootcamp.create(req.body);
-    res.status(201).json(
-        {
-            success: true,
-            data: bootcamp,
-            msg: `Create bootcamp`
-        }
-    );
+    res.status(201).json({ success: true, data: bootcamp, msg: `Create bootcamp` });
 });
 
 // @desc    Update bootcamp with id
